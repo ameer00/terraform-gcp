@@ -1,9 +1,9 @@
-// Configure the Google Cloud provider
-provider "google" {
- credentials = "${file("${var.credentials}")}"
- project     = "${var.project}" 
- region      = "${var.region}"
+module "project" {
+  source          = "../modules/project"
+  name            = "${var.project}"
+  region          = "${var.region}"
 }
+
 
 // Create VPCs
 resource "google_compute_network" "vpc" {
