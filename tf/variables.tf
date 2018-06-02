@@ -4,3 +4,7 @@ variable "credentials" {}
 variable "vpc1" {}
 variable "vpc1_node_subnet" {}
 variable "vpc1_pod_subnet" {}
+variable "vpc1_svc1_subnet" {}
+variable "vpc1_svc2_subnet" {}
+variable "vpc1_svc3_subnet" {}
+variable "vpc1_svc4_subnet" {}
