@@ -5,12 +5,12 @@ module "project" {
  region      = "${var.region}"
 }
 
-module "vpc" {
+module "vpc1000" {
   source     = "./vpc"
   vpc        = "vpc1000"
 }
  
-module "subnet" {
+module "subnet1" {
   source      = "./subnet"
   name        = "subnet1"
   project     = "${var.project}"
@@ -24,7 +24,7 @@ module "subnet" {
   svc4_subnet = "192.168.3.0/24"
 }
  
-module "gke" {
+module "gke1000" {
   source        = "./gke"
   name          = "cluster-1000"
   zone          = "us-central1-f"
