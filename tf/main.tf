@@ -5,52 +5,55 @@ provider "google" {
  region      = "${var.region}"
 }
 
-// Create VPC1000
+// Create VPCs
 resource "google_compute_network" "vpc" {
- name                    = "${var.vpc1}-vpc"
+ count                   = 3
+ name                    = "vpc-${count.index}"
  auto_create_subnetworks = "false"
 }
 
 // Create Subnet - Nodes
 resource "google_compute_subnetwork" "subnet" {
- name               = "${var.vpc1}-nodes"
- ip_cidr_range      = "${var.vpc1_node_subnet}"
- network            = "${var.vpc1}-vpc"
+ count              = 3
+ name               = "vpc-${count.index}-nodes"
+ ip_cidr_range      = "vpc-${count.index}_node_subnet}"
+ network            = "vpc-${count.index}"
  depends_on         = ["google_compute_network.vpc"]
  region             = "${var.region}"
  secondary_ip_range = {
-      range_name    = "${var.vpc1}-pod"
-      ip_cidr_range = "${var.vpc1_pod_subnet}"
+      range_name    = "vpc-${count.index}-pod"
+      ip_cidr_range = "vpc-${count.index}_pod_subnet}"
   }
  secondary_ip_range = {
-      range_name    = "${var.vpc1}-svc1"
-      ip_cidr_range = "${var.vpc1_svc1_subnet}"
+      range_name    = "vpc-${count.index}-svc1"
+      ip_cidr_range = "vpc-${count.index}_svc1_subnet}"
   }
  secondary_ip_range = {
-      range_name    = "${var.vpc1}-svc2"
-      ip_cidr_range = "${var.vpc1_svc2_subnet}"
+      range_name    = "vpc-${count.index}-svc2"
+      ip_cidr_range = "vpc-${count.index}_svc2_subnet}"
   }
  secondary_ip_range = {
-      range_name    = "${var.vpc1}-svc3"
-      ip_cidr_range = "${var.vpc1_svc3_subnet}"
+      range_name    = "vpc-${count.index}-svc3"
+      ip_cidr_range = "vpc-${count.index}_svc3_subnet}"
   }
  secondary_ip_range = {
-      range_name    = "${var.vpc1}-svc4"
-      ip_cidr_range = "${var.vpc1_svc4_subnet}"
+      range_name    = "vpc-${count.index}-svc4"
+      ip_cidr_range = "vpc-${count.index}_svc4_subnet}"
   }
 }
 
-// Create GKE Cluster in VPC1000
+// Create GKE Clusters
 resource "google_container_cluster" "primary" {
-  name                    = "${var.cluster1}"
+  count                   = 3
+  name                    = "cluster-${count.index}"
   zone                    = "${var.zone}"
-  network                 = "${var.vpc1}-vpc"
-  subnetwork              = "${var.vpc1}-nodes"
+  network                 = "vpc-${count.index}"
+  subnetwork              = "vpc-${count.index}-nodes"
   initial_node_count      = 3
   private_cluster         = "true"
-  master_ipv4_cidr_block  = "${var.cluster1_master_ip}"
+  master_ipv4_cidr_block  = "cluster-${count.index}_master_ip}"
   ip_allocation_policy    = {
-   cluster_secondary_range_name  = "${var.vpc1}-pod"
-   services_secondary_range_name = "${var.vpc1}-svc1"
+   cluster_secondary_range_name  = "vpc-${count.index}-pod"
+   services_secondary_range_name = "vpc-${count.index}-svc1"
    }
 }
