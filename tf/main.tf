@@ -46,6 +46,7 @@ resource "google_container_cluster" "primary" {
   zone                    = "${var.zone}"
   network                 = "${var.vpc1}-vpc"
   subnetwork              = "${var.vpc1}-nodes"
+  initial_node_count      = 3
   private_cluster         = "true"
   master_ipv4_cidr_block  = "${var.cluster1_master_ip}"
   ip_allocation_policy    = {
