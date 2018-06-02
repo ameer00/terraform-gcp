@@ -23,3 +23,14 @@ module "subnet" {
   svc3_subnet = "192.168.2.0/24"
   svc4_subnet = "192.168.3.0/24"
 }
+ 
+module "gke" {
+  source        = "./gke"
+  name          = "cluster-1000"
+  zone          = "us-central1-f"
+  network       = "vpc1000"
+  subnetwork    = ""
+  master_ip     = ""
+  secondary_pod = ""
+  secondary_svc = ""
+}
