@@ -5,7 +5,7 @@ provider "google" {
  region      = "${var.region}"
 }
 
-// Create VPC 1000
+// Create VPC1000
 resource "google_compute_network" "vpc" {
  name                    = "${var.vpc1}-vpc"
  auto_create_subnetworks = "false"
@@ -38,4 +38,18 @@ resource "google_compute_subnetwork" "subnet" {
       range_name    = "${var.vpc1}-svc4"
       ip_cidr_range = "${var.vpc1_svc4_subnet}"
   }
+}
+
+// Create GKE Cluster in VPC1000
+resource "google_container_cluster" "primary" {
+  name                    = "${var.cluster1}"
+  zone                    = "${var.zone}"
+  network                 = "${var.vpc1}-vpc"
+  subnetwork              = "${var.vpc1}-nodes"
+  private_cluster         = "true"
+  master_ipv4_cidr_block  = "${var.cluster1_master_ip}"
+  ip_allocation_policy    = {
+   cluster_secondary_range_name  = "${var.vpc1}-pod"
+   services_secondary_range_name = "${var.vpc1}-svc1"
+   }
 }
