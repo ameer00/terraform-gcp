@@ -31,6 +31,6 @@ module "gke1000" {
   network       = "${module.vpc1000.name}"
   subnetwork    = "${module.subnet1.self_link}"
   master_ip     = "172.18.0.0/28"
-  secondary_pod = "vpc1000-pod"
-  secondary_svc = "vpc1000-svc1"
+  secondary_pod = "${module.vpc1000.name}-pod"
+  secondary_svc = "${module.vpc1000.name}-svc1"
 }
