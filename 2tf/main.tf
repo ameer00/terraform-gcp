@@ -17,7 +17,7 @@ module "subnet" {
   region      = "${var.region}"
   network     = "vpc1000"
   ip_range    = "172.16.0.0/22"
-  pod_range   = "10.0.0.0/14"
+  pod_subnet  = "10.0.0.0/14"
   svc1_subnet = "192.168.0.0/24"
   svc2_subnet = "192.168.1.0/24"
   svc3_subnet = "192.168.2.0/24"
