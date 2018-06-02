@@ -1,1 +1,1 @@
-variables vpc {}
+variable "vpc" {}
