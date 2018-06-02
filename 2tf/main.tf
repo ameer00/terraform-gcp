@@ -29,8 +29,8 @@ module "gke" {
   name          = "cluster-1000"
   zone          = "us-central1-f"
   network       = "vpc1000"
-  subnetwork    = ""
-  master_ip     = ""
+  subnetwork    = "subnet1"
+  master_ip     = "172.18.0.0/28"
   secondary_pod = ""
   secondary_svc = ""
 }
