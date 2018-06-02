@@ -18,8 +18,8 @@ resource "google_compute_subnetwork" "subnet" {
  network            = "${var.vpc1}-vpc"
  depends_on         = ["google_compute_network.vpc"]
  region             = "${var.region}"
- secondary_ip_range = [
+ secondary_ip_range = {
       range_name    = "${var.vpc1}-pod"
       ip_cidr_range = "${var.vpc1_pod_subnet}"
-     ]
+  }
 }
