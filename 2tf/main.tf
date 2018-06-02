@@ -12,6 +12,7 @@ module "vpc1000" {
  
 module "subnet1" {
   source      = "./subnet"
+  dependsOn   = "${module.vpc1000}"
   name        = "subnet1"
   project     = "${var.project}"
   region      = "${var.region}"
@@ -26,6 +27,7 @@ module "subnet1" {
  
 module "gke1000" {
   source        = "./gke"
+  dependsOn     = "${module.subnet1}"
   name          = "cluster-1000"
   zone          = "us-central1-f"
   network       = "vpc1000"
