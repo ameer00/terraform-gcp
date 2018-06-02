@@ -14,12 +14,12 @@ resource "google_compute_network" "vpc" {
 // Create Subnet - Nodes
 resource "google_compute_subnetwork" "subnet" {
  name               = "${var.vpc1}-nodes"
- ip_cidr_range      = "${var.vpc1-node-subnet}"
+ ip_cidr_range      = "${var.vpc1_node_subnet}"
  network            = "${var.vpc1}-vpc"
  depends_on         = ["google_compute_network.vpc"]
  region             = "${var.region}"
  secondary_ip_range = [
       range_name    = "${var.vpc1}-pod"
-      ip_cidr_range = "${var.vpc1-pod-subnet}"
-      ]
+      ip_cidr_range = "${var.vpc1_pod_subnet}"
+     ]
 }
