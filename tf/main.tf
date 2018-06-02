@@ -22,4 +22,20 @@ resource "google_compute_subnetwork" "subnet" {
       range_name    = "${var.vpc1}-pod"
       ip_cidr_range = "${var.vpc1_pod_subnet}"
   }
+ secondary_ip_range = {
+      range_name    = "${var.vpc1}-svc1"
+      ip_cidr_range = "${var.vpc1_svc1_subnet}"
+  }
+ secondary_ip_range = {
+      range_name    = "${var.vpc1}-svc2"
+      ip_cidr_range = "${var.vpc1_svc2_subnet}"
+  }
+ secondary_ip_range = {
+      range_name    = "${var.vpc1}-svc3"
+      ip_cidr_range = "${var.vpc1_svc3_subnet}"
+  }
+ secondary_ip_range = {
+      range_name    = "${var.vpc1}-svc4"
+      ip_cidr_range = "${var.vpc1_svc4_subnet}"
+  }
 }
