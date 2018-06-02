@@ -1,8 +1,10 @@
 module "project" {
-  source          = "../modules/project"
-  name            = "${var.project}"
-  region          = "${var.region}"
+ source      = "/modules/project"
+ credentials = "${file("${var.credentials}")}"
+ project     = "${var.project}" 
+ region      = "${var.region}"
 }
+
 
 
 // Create VPCs
