@@ -1,7 +1,6 @@
+// Configure the Google Cloud provider
 provider "google" {
- region = "${var.region}"
-}
-
-resource "google_project" "project" {
- name            = "${var.name}"
+ credentials = "${file("${var.credentials}")}"
+ project     = "${var.project}" 
+ region      = "${var.region}"
 }
