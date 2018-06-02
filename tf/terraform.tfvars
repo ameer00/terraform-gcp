@@ -1,0 +1,6 @@
+region              = "us-central1"
+project             = "nextk8s"
+credentials         = "credentials.json"
+name                = "custom1000"
+vpc1_node_subnet    = "172.16.0.0/22"
+vpc1_pod_subnet     = "10.0.0.0/14"
