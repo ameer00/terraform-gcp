@@ -1,4 +1,5 @@
 variable "region" {}
+variable "zone" {}
 variable "project" {}
 variable "credentials" {}
 variable "vpc1" {}
@@ -8,3 +9,5 @@ variable "vpc1_svc1_subnet" {}
 variable "vpc1_svc2_subnet" {}
 variable "vpc1_svc3_subnet" {}
 variable "vpc1_svc4_subnet" {}
+variable "cluster1" {}
+variable "cluster1_master_ip" {}
